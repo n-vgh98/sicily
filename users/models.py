@@ -33,6 +33,7 @@ class User(AbstractBaseUser, PermissionsMixin):
                                  message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
     phone_number = models.CharField(unique=True, validators=[phone_regex], max_length=17)
     date_joined = models.DateTimeField(default=timezone.now)
+    is_owner = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 
