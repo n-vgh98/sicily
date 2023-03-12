@@ -12,6 +12,7 @@ class Coffeeshop(models.Model):
     def __str__(self):
         return self.name
 
+
 class Game(models.Model):
     coffeeshop = models.ForeignKey(Coffeeshop, related_name='coffeeshop_games', on_delete=models.CASCADE)
     title = models.CharField(max_length=64)  # TODO CHOICE FIELD
@@ -25,10 +26,11 @@ class Game(models.Model):
     def __str__(self):
         return self.title
 
+
 class Comment(models.Model):
     coffeeshop = models.ForeignKey(Coffeeshop, related_name='coffeeshop_comments', on_delete=models.CASCADE)
     text = models.TextField()
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='users_comments', on_delete=models.DO_NOTHING)
-    status = models.BooleanField(default=False)#for published
+    status = models.BooleanField(default=False)  # for published
     created_time = models.DateTimeField(auto_now_add=True)
     modified_time = models.DateTimeField(auto_now=True)
