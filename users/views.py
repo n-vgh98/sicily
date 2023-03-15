@@ -13,7 +13,12 @@ def owner_dashboard(request):
 
 
 def owner_profile(request):
-    return render(request, 'users/owner/show_profile.html')
+    if request.method == 'GET':
+        my_coffeeshops = Coffeeshop.objects.filter(owner=request.user.id)
+        context = {
+            'my_coffeeshops': my_coffeeshops,
+        }
+        return render(request, 'users/owner/show_profile.html', context=context)
 
 
 def user_login(request):
