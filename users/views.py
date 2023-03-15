@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 def owner_dashboard(request):
@@ -24,4 +24,9 @@ def user_login(request):
                 login(request, user)
                 return redirect('owner_profile')
             return redirect('user_login')
+    return redirect('user_login')
+
+
+def user_logout(request):
+    logout(request)
     return redirect('user_login')
