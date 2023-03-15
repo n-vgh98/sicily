@@ -20,14 +20,11 @@
             <div class="shape"></div>
             <div class="shape"></div>
         </div>
-        <form method="post" action="{% url 'user_login' %}" class="form-login">
+        <form method="post" action="{% url 'sign_up' %}" class="form-login">
             {% csrf_token %}
             <h3>ثبت نام | ورود</h3>
     
-            <label for="mobile" class="form-lable">شماره موبایل خود را وارد نمایید:</label>
-            <input type="text" class="login-input text-center" id="mobile" name="phone_number" autocomplete="off" placeholder="09 *** ** **" maxlength="17">
-             <label for="password" class="form-lable">رمز عبور خود را وارد نمایید:</label>
-            <input type="text" class="login-input text-center" id="password" name="password" autocomplete="off" placeholder="*** ** **">
+           {{ form  }}
 {#        {{ form }}#}
             <button type="submit" class="btn-login">ورود</button>
             <a href="index.html" class="d-block text-center pt-3"> بازشگت به صفحه اصلی </a>

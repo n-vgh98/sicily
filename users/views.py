@@ -1,6 +1,11 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
+from .forms import CustomUserForm
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+from coffeeshops.models import Coffeeshop
 
 
 def owner_dashboard(request):
@@ -22,11 +27,20 @@ def user_login(request):
             user = authenticate(request, phone_number=phone_number, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('owner_profile')
-            return redirect('user_login')
-    return redirect('user_login')
+                owner = Coffeeshop.objects.filter(owner=user.id)
+                if owner:
+                    return redirect('owner_profile')
+                return HttpResponse('you are user')  # TODO return to home
+            return HttpResponse('you are not user')  # TODO create MESSAGE
+    return HttpResponse('you are annoymous')  # TODO CREATE MESSAGE
 
 
 def user_logout(request):
     logout(request)
     return redirect('user_login')
+
+
+class SignUp(CreateView):
+    form_class = CustomUserForm
+    template_name = 'users/authentication/sign_up.html'
+    success_url = reverse_lazy('user_login')
