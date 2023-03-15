@@ -130,4 +130,5 @@ dmypy.json
 
 #media, static
 /media
-/static/
+static/
+owner/
