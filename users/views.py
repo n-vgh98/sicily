@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def owner_dashboard(request):
+    return render(request, 'users/owner/owner_dashboard.html')
