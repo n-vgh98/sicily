@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import CustomUserForm
@@ -19,6 +19,22 @@ def owner_profile(request):
             'my_coffeeshops': my_coffeeshops,
         }
         return render(request, 'users/owner/show_profile.html', context=context)
+    # elif request.method == 'POST':
+    #     name = request.POST['name']
+    #     address = request.POST['address']
+    #     description = request.POST['description']
+    #     main_image = request.POST['main_image']
+
+
+def edit_owner_profile(request, pk):
+    coffeeshop = get_object_or_404(Coffeeshop, pk=pk)
+    coffeeshop.name = request.POST['name']
+    coffeeshop.address = request.POST['address']
+    coffeeshop.description = request.POST['description']
+    coffeeshop.main_image = request.POST['main_image']
+    coffeeshop.save()
+
+    return redirect('owner_dashboard')
 
 
 def user_login(request):
