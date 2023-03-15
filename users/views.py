@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import CustomUserForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-from coffeeshops.models import Coffeeshop
+from coffeeshops.models import Coffeeshop, Game
 
 
 def owner_dashboard(request):
@@ -65,3 +65,12 @@ class SignUp(CreateView):
     form_class = CustomUserForm
     template_name = 'users/authentication/sign_up.html'
     success_url = reverse_lazy('user_login')
+
+
+def owner_game(request):
+    if request.method == 'GET':
+        games = Game.objects.filter(coffeeshop__owner=request.user.id)
+        context = {
+            'games': games
+        }
+        return render(request, 'users/owner/show_game.html', context=context)
