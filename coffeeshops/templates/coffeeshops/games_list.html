@@ -1,0 +1,118 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block main_content %}
+  <main id="main">
+
+        <section class="pt-4" id="place-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="box-info">
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <div class="title">
+                                        <a href="">
+                                            <h1>{{ coffeeshop.name }} </h1>
+                                        </a>
+                                    </div>
+                                    <div class="address pt-3">
+                                        <i class="fa fa-map-marker"></i>
+                                        <span> آدرس: {{ coffeeshop.address }}</span>
+                                    </div>
+{#                                    <div class="address pt-3">#}
+{#                                        <i class="fa fa-clock"></i>#}
+{#                                        <span> ساعت کاری: شنبه تا جمعه 11 تا 22 </span>#}
+{#                                    </div>#}
+                                </div>
+                                <div class="col-lg-5 col-left">
+                                    <div class="phone">
+                                        <i class="fa fa-phone"></i>
+                                        <span> شماره تماس: 07138217655 </span>
+                                    </div>
+                                    <div class="btn-info">
+                                        <a href="tel:07138217655" class="btn-phone" target="_blank" rel="nofollow">
+                                            <i class="fa fa-phone"></i>
+                                            <span> تماس تلفنی </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pb-4">
+            <div class="container">
+                <div class="row">
+                    {% for game in games %}
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="cafe-card">
+                            <div class="cafe-card-img">
+                                <img src="assets/img/بازی مافیا.jpg" alt="">
+                                <div class="bg-bottom"></div>
+                            </div>
+                            <div class="cafe-card-details">
+                                <h4 class="text-center pt-3"> {{ game.title }}</h4>
+                                <div class="p-3 d-flex justify-content-between">
+                                    <div>
+                                        <i class="fa fa-user"></i>
+                                        <span>ظرفیت:</span>
+                                        <span> {{ game.capacity }} نفر </span>
+                                    </div>
+                                    <div><a href="" class="btn-reserve" data-bs-toggle="modal" data-bs-target="#reserve"> رزرو </a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+
+        <div class="modal fade" id="reserve" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title text-black"> تکمیل اطلاعات </h5>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="form-group col-md-6 mb-3">
+                                    <label for="recipient-name" class="col-form-label">تعداد:</label>
+                                    <input type="text" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="form-group col-md-6 mb-3">
+                                    <label for="recipient-name" class="col-form-label">سانس بازی:</label>
+                                    <select class="form-select form-select-md" aria-label=".form-select-sm example">
+                                        <option selected=""> سانس بازی را انتخاب کنید </option>
+                                        <option value="1">10 تا 12</option>
+                                        <option value="2">12 تا 14</option>
+                                        <option value="3">14 تا 16</option>
+                                        <option value="4">16 تا 18</option>
+                                        <option value="5">18 تا 20</option>
+                                        <option value="6">20 تا 22</option>
+                                      </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6 mb-3">
+                                    <label for="recipient-name" class="col-form-label">شماره موبایل:</label>
+                                    <input type="text" class="form-control" id="recipient-name" maxlength="11">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">انصراف</button>
+                        <button type="submit" class="btn btn-primary"> تایید </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

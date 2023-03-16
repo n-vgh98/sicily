@@ -7,7 +7,7 @@
                 <div class="row">
                     {% for coffeeshop in coffeeshops %}
                     <div class="col-lg-3 col-md-6 col-12">
-                        <a href="cafe-game.html">
+                        <a href="{% url 'games_list' coffeeshop.id %}">
                             <div class="cafe-card">
                                 <div class="cafe-card-img">
                                     {% if coffeeshop.main_image %}
