@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>لیست کافه ها</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <link href="" rel="icon">
+    <link href="" rel="apple-touch-icon">
+    <link href="{% static 'coffeeshops/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'coffeeshops/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'coffeeshops/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <header id="header">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                <div>
+                    <aside id="sidebar">
+                        <div class="sidebar_content sidebar_head">
+                            <img src="{% static 'coffeeshops/img/logo.jpg' %}" alt="">
+                        </div>
+
+                        <div class="sidebar_content sidebar_body">
+                            <nav class="side_navlinks">
+                                <ul>
+                                    <li><a href="{% url 'index' %}">صفحه اصلی</a></li>
+                                    <li><a href="{% url 'coffeeshops_list' %}">لیست کافه‌ها</a></li>
+                                    <li><a href="#">درباه ما</a></li>
+                                    <li><a href="#">مقالات</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </aside>
+                    <div class="sidebar_toggler">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <form class="search-form d-none d-lg-block">
+                    <div class="inner-form">
+                        <div class="input-field first-wrap">
+                            <div class="svg-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path
+                                        d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <input id="search" type="text" placeholder="جستجو کنید ..." />
+                        </div>
+                        <div class="input-field second-wrap">
+                            <button class="btn-search" type="button">جستجو</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="custom-btn">
+                    <a href="{% url 'user_login' %}">
+                        <i class="fa fa-sign-in"></i>
+                        <span> ورود یا ثبت نام </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="header-top">
+        <div class="parallax_banner">
+            <div class="single-slide-item"
+                style="background: url({% static 'coffeeshops/img/header-bg.jpg' %}) center no-repeat; background-size: cover; min-height: 300px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <div class="content">
+                                <h2 class="text-white py-2"> کافه ها </h2>
+                                <p class="text-white"> می‌توانید لیست کافه‌های شهر شیراز را در این فهرست ببینید.
+                                </p>
+                                <ul>
+                                    <li>
+                                        <i class="fa fa-place"></i>
+                                        <span class="text-white">10 مکان</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% block main_content %}
+    {% endblock %}
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6 footer-newsletter">
+                    <h5> عضویت در خبرنامه </h5>
+                    <p class="p-2">برای اطلاع از آخرین اخبار و اطلاعیه های  عضو خبرنامه شوید</p>
+                    <form class="newsletter" name="newsletter" action="" method="post">
+                        <div class="footer__newsletter_box">
+                            <div class="input-field first-wrap">
+                                <input type="email" name="email" placeholder="ایمیل خود را وارد کنید" />
+                            </div>
+                            <div class="input-field second-wrap">
+                                <button class="btn-newsletter" type="submit">ثبت ایمیل</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links-cafe">
+                    <h5> لیست کافه ها </h5>
+                    <ul>
+                        <li> <a href=""> کافه برین </a></li>
+                        <li> <a href=""> کافه بازی آلتو </a></li>
+                        <li> <a href=""> کافه رازماز شعبه 2 </a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6 footer-links">
+                    <h5> سایر لینک ها </h5>
+                    <ul>
+                        <li> <a href="{% url 'index' %}"> صفحه اصلی </a></li>
+                        <li> <a href="{% url 'coffeeshops_list' %}"> کافه ها </a></li>
+                        <li> <a href="About_Us.html">درباره ما</a></li>
+                        <li> <a href="Contact_Us.html"> تماس با ما </a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <a href="{% url 'index' %}" class="footer-logo">
+                        <img src="{% static 'coffeeshops/img/logo.jpg' %}" alt="">
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="copyright text-center">
+            Copyright ©2023 name website | All Rights Reserved
+        </div>
+    </footer>
+
+
+    <script src="{% static 'coffeshops/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'coffeshops/js/main.js' %}"></script>
+
+</body>
+
+</html>

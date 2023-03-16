@@ -1,0 +1,37 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block main_content %}
+    <main id="main">
+        <section class="padding_section">
+            <div class="container">
+                <div class="row">
+                    {% for coffeeshop in coffeeshops %}
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <a href="cafe-game.html">
+                            <div class="cafe-card">
+                                <div class="cafe-card-img">
+                                    {% if coffeeshop.main_image %}
+                                    <img src="{{ coffeeshop.main_image.url }}" alt="">
+                                    {% else %}
+                                     <img src="{% static 'coffeeshops/img/2.jpg' %}" alt="">
+                                    {% endif %}
+                                    <div class="bg-bottom"></div>
+                                </div>
+                                <div class="cafe-card-details">
+                                    <h4 class="text-center pt-3"> {{ coffeeshop.name }} </h4>
+                                    <div class="p-3">
+                                        <i class="fas fa-map-marker"></i>
+                                        <span> آدرس:{{ coffeeshop.address }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
