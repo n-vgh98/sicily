@@ -91,3 +91,16 @@ def owner_game(request):
             description=description
         )
         return redirect('owner_game')
+
+
+def edit_owner_game(request, pk):
+    game = get_object_or_404(Game, pk=pk)
+    coffeeshop_get = request.POST['coffeeshop']
+    coffeeshop_id = Coffeeshop.objects.get(id=coffeeshop_get)
+    game.coffeeshop = coffeeshop_id
+    game.title = request.POST['title']
+    game.capacity = request.POST['capacity']
+    game.game_time = request.POST['game_time']
+    game.description = request.POST['description']
+    game.save()
+    return redirect('owner_game')
