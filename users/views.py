@@ -70,7 +70,24 @@ class SignUp(CreateView):
 def owner_game(request):
     if request.method == 'GET':
         games = Game.objects.filter(coffeeshop__owner=request.user.id)
+        coffeeshops = Coffeeshop.objects.filter(owner=request.user.id)
         context = {
-            'games': games
+            'games': games,
+            'coffeeshops': coffeeshops
         }
         return render(request, 'users/owner/show_game.html', context=context)
+
+    elif request.method == 'POST':
+        coffeeshop = request.POST['coffeeshop']
+        title = request.POST['title']
+        capacity = request.POST['capacity']
+        game_time = request.POST['game_time']
+        description = request.POST['description']
+        Game.objects.create(
+            coffeeshop=Coffeeshop.objects.get(id=coffeeshop),
+            title=title,
+            capacity=capacity,
+            game_time=game_time,
+            description=description
+        )
+        return redirect('owner_game')
